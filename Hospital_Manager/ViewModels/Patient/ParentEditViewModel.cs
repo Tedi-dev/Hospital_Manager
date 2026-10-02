@@ -18,15 +18,13 @@ namespace Hospital_Manager.ViewModels.Parent
         {
             get; set;
         }
-        [Required, EmailAddress]
-        public string Email
-        {
-            get; set;
-        }
-        [Required, Phone]
         public string PhoneNumber
         {
             get; set;
         }
+        public List<int> DoctorIds
+        {
+            get; set;
+        } = new List<int>();
     }
 }

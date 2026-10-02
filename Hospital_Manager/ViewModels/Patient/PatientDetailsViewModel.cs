@@ -1,4 +1,6 @@
-﻿namespace Hospital_Manager.ViewModels.Parent
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+
+namespace Hospital_Manager.ViewModels.Parent
 {
     public class PatientDetailsViewModel
     {
@@ -19,6 +21,10 @@
             get; set;
         }
         public string PhoneNumber
+        {
+            get; set;
+        }
+        public string DoctorName
         {
             get; set;
         }
