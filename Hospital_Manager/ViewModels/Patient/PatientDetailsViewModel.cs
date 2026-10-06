@@ -22,5 +22,9 @@
         {
             get; set;
         }
+        public string DoctorName
+        {
+            get; set;
+        }
     }
 }

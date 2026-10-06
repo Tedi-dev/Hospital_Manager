@@ -13,5 +13,9 @@
         public string PhoneNumber { get; set; }
 
         public int BedsCount { get; set; }
+        public string DoctorName
+        {
+            get; set;
+        }
     }
 }

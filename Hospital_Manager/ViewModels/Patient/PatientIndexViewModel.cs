@@ -1,6 +1,6 @@
 ﻿namespace Hospital_Manager.ViewModels.Parent
 {
-    public class PaientIndexViewModel
+    public class PatientIndexViewModel
     {
         public int Id
         {
@@ -19,6 +19,10 @@
             get; set;
         }
         public string PhoneNumber
+        {
+            get; set;
+        }
+        public string DoctorName
         {
             get; set;
         }

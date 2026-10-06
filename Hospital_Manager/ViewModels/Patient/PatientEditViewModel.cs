@@ -2,7 +2,7 @@
 
 namespace Hospital_Manager.ViewModels.Parent
 {
-    public class ParentEditViewModel
+    public class PatientEditViewModel
     {
         public int Id
         {
@@ -28,5 +28,6 @@ namespace Hospital_Manager.ViewModels.Parent
         {
             get; set;
         }
+        public List<int> DoctorIDs { get; set; } = new List<int>();
     }
 }

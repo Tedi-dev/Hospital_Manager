@@ -24,5 +24,6 @@ namespace Hospital_Manager.ViewModels.Parent
         {
             get; set;
         }
+        public List<int> DoctorIDs { get; set; } = new List<int>();
     }
 }
