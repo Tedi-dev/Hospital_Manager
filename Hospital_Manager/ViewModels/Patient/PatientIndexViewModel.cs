@@ -25,6 +25,10 @@
         public string DoctorName
         {
             get; set;
+<<<<<<< HEAD:Hospital_Manager/ViewModels/Patient/PatientIndexViewModel.cs
         }
+=======
+        } = string.Empty;
+>>>>>>> 5fd0922e6384c5f943a3eea8c1594797bc7638f8:Hospital_Manager/ViewModels/Patient/PaientIndexViewModel.cs
     }
 }
