@@ -1,10 +1,6 @@
 ﻿using Data_Hospital_Manager;
 using Data_Hospital_Manager.Entities;
-<<<<<<< HEAD
 using Hospital_Manager.ViewModels.Parent;
-=======
-using Hospital_Manager.ViewModels.Doctor;
->>>>>>> 5fd0922e6384c5f943a3eea8c1594797bc7638f8
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +10,6 @@ namespace Hospital_Manager.Controllers
     public class PatientController : Controller
     {
         private readonly HospitalDbContext _context;
-<<<<<<< HEAD
         public PatientController(HospitalDbContext context)
         {
             _context = context;
@@ -70,7 +65,7 @@ namespace Hospital_Manager.Controllers
         //Create Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PatientEditViewModel model)
+        public async Task<IActionResult> Create(PatientCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -89,10 +84,11 @@ namespace Hospital_Manager.Controllers
                     {
                         var doctorPatient = new DoctorPatient
                         {
-                            DoctorId = doctorId
+                            DoctorId = doctorId,
+                            PatientId = patient.Id
                         };
+                        patient.DoctorPatients.Add(doctorPatient);
                     }
-                    _context.Patients.Add(patient);
                     await _context.SaveChangesAsync();
                 }
                 return RedirectToAction(nameof(Index));
@@ -170,6 +166,7 @@ namespace Hospital_Manager.Controllers
         }
         //Delete Post
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var patient = await _context.Patients.FindAsync(id);
@@ -181,12 +178,5 @@ namespace Hospital_Manager.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-=======
-
-        public IActionResult Index()
-        {
-            return View();
-        }
->>>>>>> 5fd0922e6384c5f943a3eea8c1594797bc7638f8
     }
 }

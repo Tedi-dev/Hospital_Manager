@@ -10,11 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<HospitalDbContext>(options =>
     options.UseSqlServer(
-<<<<<<< HEAD
         builder.Configuration.GetConnectionString("Arsenal")));
-=======
-        builder.Configuration.GetConnectionString("ShcoolConnection")));
->>>>>>> 5fd0922e6384c5f943a3eea8c1594797bc7638f8
 
 var app = builder.Build();
 
