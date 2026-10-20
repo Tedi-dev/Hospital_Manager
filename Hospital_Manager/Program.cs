@@ -11,6 +11,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<HospitalDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("Arsenal")));
+builder.Services.AddScoped<IHospitalService, HospitalService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
 
 var app = builder.Build();
 
