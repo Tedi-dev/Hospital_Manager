@@ -1,3 +1,5 @@
+using Core_Hospital_Manager.Interfaces;
+using Core_Hospital_Manager.Services;
 using Data_Hospital_Manager;
 using Microsoft.EntityFrameworkCore;
 

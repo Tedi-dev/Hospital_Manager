@@ -3,6 +3,7 @@ using Data_Hospital_Manager.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hospital_Manager.ViewModels.Hospital;
+using Core_Hospital_Manager.Interfaces;
 
 namespace Hospital_Manager.Controllers
 {

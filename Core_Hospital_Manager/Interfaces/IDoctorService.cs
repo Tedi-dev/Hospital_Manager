@@ -11,8 +11,8 @@ namespace Core_Hospital_Manager.Interfaces
     {
         Task<List<Doctor>> GetAllAsync();
         Task<Doctor?> GetByIdAsync(int id);
-        Task CreateAsync(Doctor hospital);
-        Task UpdateAsync(Doctor hospital, List<int> patientIds);
+        Task CreateAsync(Doctor doctor);
+        Task UpdateAsync(Doctor doctor);
         Task DeleteAsync(int id);
     }
 }
