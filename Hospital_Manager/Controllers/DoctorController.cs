@@ -1,4 +1,5 @@
 ﻿using Core_Hospital_Manager.Interfaces;
+using Core_Hospital_Manager.Services;
 using Data_Hospital_Manager;
 using Data_Hospital_Manager.Entities;
 using Hospital_Manager.ViewModels.Doctor;
@@ -184,6 +185,20 @@ namespace Hospital_Manager.Controllers
             await _DService.DeleteAsync(id);
 
             return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetFiltered(string? search, string? specialty, string? sortOrder)
+        {
+            var doctors = await _DService.GetAllAsync(search, specialty, sortOrder);
+            var result = doctors.Select(d => new
+            {
+                id = d.Id,
+                firstName = d.FirstName,
+                lastName = d.LastName,
+                specialty = d.Specialty,
+                hospitalName = d.Hospital.Name
+            }).ToList();
+            return Json(result);
         }
     }
 }
