@@ -9,7 +9,7 @@ namespace Core_Hospital_Manager.Interfaces
 {
     public interface IHospitalService
     {
-        Task<List<Hospital>> GetAllAsync();
+        Task<List<Hospital>> GetAllAsync(string? search = null, int? minBeds = null, string? sortOrder = null);
         Task<Hospital?> GetByIdAsync(int id);
         // Do not return results
         Task CreateAsync(Hospital hospital);
