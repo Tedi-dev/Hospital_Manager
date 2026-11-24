@@ -23,6 +23,9 @@ namespace Core_Hospital_Manager.Services
             var hospital = await _context.Hospitals.FindAsync(id);
             if (hospital != null)
             {
+                bool hasDoctors = await _context.Doctors.AnyAsync(d => d.HospitalId == id);
+                if (hasDoctors)
+                    throw new InvalidOperationException("Cannot delete hospital with associated doctors.");
                 hospital.IsDeleted = true;
                 await _context.SaveChangesAsync();
             }
