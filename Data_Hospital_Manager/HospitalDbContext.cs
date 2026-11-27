@@ -1,5 +1,7 @@
 ﻿using Data_Hospital_Manager.Configs;
 using Data_Hospital_Manager.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Data_Hospital_Manager
 {
-    public class HospitalDbContext : DbContext
+    public class HospitalDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public HospitalDbContext(DbContextOptions<HospitalDbContext> options)
             : base(options)
@@ -27,6 +29,9 @@ namespace Data_Hospital_Manager
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new DoctorParentConfig());
             modelBuilder.ApplyConfiguration(new HospitalConfig());
+            modelBuilder.ApplyConfiguration(new DoctorConfig());
+            modelBuilder.ApplyConfiguration(new PatientConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
         }
     }
 }

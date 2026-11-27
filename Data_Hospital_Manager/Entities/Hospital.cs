@@ -33,5 +33,7 @@ namespace Data_Hospital_Manager.Entities
         public bool IsDeleted { get; set; }
 
         public ICollection<Doctor> Doctors { get; set; }= new List<Doctor>();
+        public Guid? UserId { get; set; }
+        public User? User { get; set; }
     }
 }
