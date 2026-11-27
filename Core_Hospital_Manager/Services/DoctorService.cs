@@ -1,6 +1,7 @@
 ﻿using Core_Hospital_Manager.Interfaces;
 using Data_Hospital_Manager;
 using Data_Hospital_Manager.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -34,9 +35,34 @@ namespace Core_Hospital_Manager.Services
             }
         }
 
-        public async Task<List<Doctor>> GetAllAsync()
+        public async Task<List<Doctor>> GetAllAsync(string? search, string? speciality, string? sortOrder)
         {
-            return await _context.Doctors.Include(x => x.Hospital).Include(x => x.DoctorPatients).ThenInclude(x => x.Patient).ToListAsync();
+            var query = _context.Doctors.Include(d => d.Hospital).Where(d => true);
+            IQueryable<Doctor> queryable = _context.Doctors.Include(d => d.Hospital);
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(d => d.FirstName.Contains(search) || d.LastName.Contains(search));
+            }
+            if (!string.IsNullOrWhiteSpace(speciality))
+            {
+                query = query.Where(d => d.Specialty.Contains(speciality));
+            }
+            switch (sortOrder)
+            {
+                case "name_asc":
+                    query = query.OrderBy(d => d.FirstName).ThenBy(d => d.LastName);
+                    break;
+                case "name_desc":
+                    query = query.OrderByDescending(d => d.FirstName).ThenByDescending(d => d.LastName);
+                    break;
+                case "specialty":
+                    query = query.OrderBy(d => d.Specialty).ThenBy(d => d.FirstName);
+                    break;
+                default:
+                    query = query.OrderBy(d => d.FirstName).ThenBy(d => d.LastName);
+                    break;
+            }
+            return await query.ToListAsync();
         }
 
         public async Task<Doctor?> GetByIdAsync(int id)
